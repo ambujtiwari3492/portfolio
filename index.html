@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ambuj Tiwari — Backend & Full-Stack Engineer</title>
+<meta name="description" content="Ambuj Tiwari — Software Engineer, 3.9+ years building backend systems and full-stack apps with Java, Spring Boot, Angular, AWS and GenAI.">
+<meta property="og:title" content="Ambuj Tiwari — Backend & Full-Stack Engineer">
+<meta property="og:description" content="Java · Spring Boot · Angular · AWS · GenAI — 3.9+ years shipping production systems at Cognizant.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0A0E16;
+    --surface:#111827;
+    --surface-2:#161E2E;
+    --border:#242E42;
+    --border-soft:#1C2536;
+    --text:#E7EBF3;
+    --text-muted:#8D97AC;
+    --text-faint:#5C6579;
+    --accent:#D9A15B;
+    --accent-soft:rgba(217,161,91,0.12);
+    --teal:#5FB8B0;
+    --teal-soft:rgba(95,184,176,0.12);
+    --rose:#C97B63;
+    --rose-soft:rgba(201,123,99,0.12);
+    --radius:10px;
+    --mono:'JetBrains Mono', ui-monospace, monospace;
+    --sans:'IBM Plex Sans', system-ui, sans-serif;
+    --maxw:1080px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  body::before{
+    content:'';
+    position:fixed; inset:0;
+    background-image:
+      linear-gradient(var(--border-soft) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border-soft) 1px, transparent 1px);
+    background-size:64px 64px;
+    opacity:0.35;
+    pointer-events:none;
+    z-index:0;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 40%, transparent 90%);
+  }
+  a{color:inherit;text-decoration:none;}
+  ::selection{background:var(--accent-soft); color:var(--accent);}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:4px;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12.5px; letter-spacing:0.06em;
+    color:var(--accent); text-transform:lowercase; margin-bottom:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{content:'//'; color:var(--text-faint);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,14,22,0.78);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border-soft);
+  }
+  .navbar{
+    max-width:var(--maxw); margin:0 auto; padding:0 28px;
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  .brand{
+    font-family:var(--mono); font-size:14px; font-weight:600;
+    color:var(--text); white-space:nowrap;
+  }
+  .brand span{color:var(--text-faint);}
+  nav ul{list-style:none; display:flex; gap:26px;}
+  nav a{
+    font-family:var(--mono); font-size:12.5px; color:var(--text-muted);
+    letter-spacing:0.02em; transition:color .2s;
+    position:relative; padding:4px 0;
+  }
+  nav a:hover, nav a.active{color:var(--accent);}
+  nav a.active::after{
+    content:''; position:absolute; left:0; bottom:-6px; width:100%; height:1px; background:var(--accent);
+  }
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .btn-nav{
+    font-family:var(--mono); font-size:12px; padding:7px 14px;
+    border:1px solid var(--border); border-radius:6px; color:var(--text);
+    transition:border-color .2s, color .2s, background .2s;
+  }
+  .btn-nav:hover{border-color:var(--accent); color:var(--accent); background:var(--accent-soft);}
+  .navtoggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:92vh; display:flex; flex-direction:column; justify-content:center;
+    padding:140px 0 80px;
+    position:relative;
+  }
+  .status-panel{
+    border:1px solid var(--border); border-radius:var(--radius);
+    background:linear-gradient(180deg, var(--surface), var(--surface-2));
+    padding:22px 26px; margin-bottom:36px;
+    font-family:var(--mono); font-size:13px; color:var(--text-muted);
+    max-width:560px;
+  }
+  .status-panel .dots{display:flex; gap:6px; margin-bottom:14px;}
+  .status-panel .dots span{width:9px; height:9px; border-radius:50%; background:var(--border);}
+  .status-panel .dots span:nth-child(1){background:#C97B63;}
+  .status-panel .dots span:nth-child(2){background:#D9A15B;}
+  .status-panel .dots span:nth-child(3){background:#5FB8B0;}
+  .status-panel .line{margin-bottom:6px;}
+  .status-panel .prompt{color:var(--teal);}
+  .status-panel .caret{
+    display:inline-block; width:7px; height:14px; background:var(--accent);
+    vertical-align:middle; margin-left:4px;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{50%{opacity:0;}}
+
+  .hero h1{
+    font-family:var(--mono); font-weight:800; font-size:clamp(38px, 7vw, 74px);
+    letter-spacing:-0.01em; line-height:1.02; color:var(--text);
+    margin-bottom:14px;
+  }
+  .hero h1 em{color:var(--accent); font-style:normal;}
+  .hero .role{
+    font-size:clamp(16px, 2.2vw, 21px); color:var(--text-muted); font-weight:500;
+    margin-bottom:6px;
+  }
+  .hero .stack{
+    font-family:var(--mono); font-size:14px; color:var(--teal); margin-bottom:34px;
+  }
+  .hero-cta{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:52px;}
+  .btn{
+    font-family:var(--mono); font-size:13.5px; padding:13px 24px; border-radius:7px;
+    display:inline-flex; align-items:center; gap:8px; transition:transform .15s, box-shadow .2s, background .2s, border-color .2s;
+    border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{background:var(--accent); color:#1A1206; font-weight:600;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px -8px rgba(217,161,91,0.45);}
+  .btn-secondary{border:1px solid var(--border); color:var(--text);}
+  .btn-secondary:hover{border-color:var(--teal); color:var(--teal); transform:translateY(-2px);}
+
+  .metrics{
+    display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+    border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+  }
+  .metric{
+    background:var(--surface); padding:20px 18px; text-align:left;
+  }
+  .metric .num{font-family:var(--mono); font-size:26px; font-weight:700; color:var(--accent); display:block;}
+  .metric .label{font-size:12px; color:var(--text-muted); margin-top:4px; display:block;}
+
+  /* ---------- SECTION ---------- */
+  section{padding:100px 0;}
+  .section-title{
+    font-family:var(--mono); font-weight:700; font-size:clamp(24px, 3.4vw, 32px);
+    color:var(--text); margin-bottom:36px; letter-spacing:-0.01em;
+  }
+  .divider{height:1px; background:linear-gradient(90deg, var(--border), transparent); margin:0 0 100px;}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  .about-grid p{color:var(--text-muted); font-size:15.5px; margin-bottom:16px;}
+  .about-grid p strong{color:var(--text); font-weight:600;}
+  .about-card{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--surface);
+    padding:26px;
+  }
+  .photo-frame{
+    position:relative; border-radius:8px; overflow:hidden; margin-bottom:20px;
+    border:1px solid var(--border);
+  }
+  .photo-frame img{
+    width:100%; display:block; aspect-ratio:3/3.6; object-fit:cover;
+    filter:grayscale(0.15) contrast(1.03);
+  }
+  .photo-frame::before, .photo-frame::after{
+    content:''; position:absolute; width:16px; height:16px; pointer-events:none;
+    border-color:var(--accent); z-index:2;
+  }
+  .photo-frame::before{top:8px; left:8px; border-top:2px solid var(--accent); border-left:2px solid var(--accent);}
+  .photo-frame::after{bottom:8px; right:8px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent);}
+  .photo-caption{
+    position:absolute; bottom:8px; left:8px; font-family:var(--mono); font-size:11px;
+    color:var(--text); background:rgba(10,14,22,0.7); padding:3px 8px; border-radius:4px;
+    letter-spacing:0.02em; z-index:2;
+  }
+  .about-card .row{
+    display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--border-soft);
+    font-size:13.5px;
+  }
+  .about-card .row:last-child{border-bottom:none;}
+  .about-card .row span:first-child{color:var(--text-faint); font-family:var(--mono); font-size:12px;}
+  .about-card .row span:last-child{color:var(--text); font-weight:500; text-align:right;}
+
+  /* ---------- CHANGELOG / EXPERIENCE ---------- */
+  .changelog-head{
+    font-family:var(--mono); font-size:13px; color:var(--text-faint);
+    border:1px solid var(--border-soft); border-bottom:none; border-radius:8px 8px 0 0;
+    padding:10px 18px; background:var(--surface); display:flex; justify-content:space-between;
+  }
+  .changelog{
+    border:1px solid var(--border-soft); border-radius:0 0 8px 8px; background:var(--surface);
+    padding:8px 0 8px 0;
+  }
+  .entry{
+    padding:28px 30px; border-bottom:1px solid var(--border-soft);
+    display:grid; grid-template-columns:150px 1fr; gap:26px;
+  }
+  .entry:last-child{border-bottom:none;}
+  .entry .meta{display:flex; flex-direction:column; gap:8px;}
+  .version{
+    font-family:var(--mono); font-size:15px; font-weight:700; color:var(--accent);
+  }
+  .daterange{font-family:var(--mono); font-size:11.5px; color:var(--text-faint); line-height:1.5;}
+  .entry h3{font-size:17px; font-weight:600; color:var(--text); margin-bottom:2px;}
+  .entry .org{font-size:13px; color:var(--text-muted); margin-bottom:14px;}
+  .changes{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .changes li{font-size:14px; color:var(--text-muted); display:flex; gap:10px; align-items:baseline;}
+  .tag{
+    font-family:var(--mono); font-size:10.5px; font-weight:700; padding:2px 7px; border-radius:4px;
+    letter-spacing:0.03em; flex-shrink:0; text-transform:uppercase;
+  }
+  .tag-added{background:var(--teal-soft); color:var(--teal);}
+  .tag-improved{background:var(--accent-soft); color:var(--accent);}
+  .tag-fixed{background:var(--rose-soft); color:var(--rose);}
+
+  /* ---------- SKILLS ---------- */
+  .skills-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:22px;}
+  .skill-card{border:1px solid var(--border); border-radius:var(--radius); padding:22px 24px; background:var(--surface);}
+  .skill-card h4{
+    font-family:var(--mono); font-size:12px; color:var(--text-faint); text-transform:lowercase;
+    margin-bottom:14px; letter-spacing:0.03em;
+  }
+  .chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-family:var(--mono); font-size:12px; padding:5px 11px; border-radius:5px;
+    border:1px solid var(--border); color:var(--text-muted); background:var(--surface-2);
+    transition:border-color .15s, color .15s;
+  }
+  .chip:hover{border-color:var(--teal); color:var(--teal);}
+
+  /* ---------- PROJECTS ---------- */
+  .projects-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:22px;}
+  .project-card{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--surface);
+    padding:26px; transition:transform .2s, border-color .2s;
+  }
+  .project-card:hover{transform:translateY(-3px); border-color:var(--accent);}
+  .project-card .pname{font-family:var(--mono); font-size:15.5px; font-weight:700; color:var(--text); margin-bottom:10px;}
+  .project-card p{font-size:13.8px; color:var(--text-muted); margin-bottom:16px;}
+  .project-card .chips{margin-top:auto;}
+  .project-card .chip{font-size:11px; padding:4px 9px;}
+
+  /* ---------- EDUCATION / CERTS ---------- */
+  .split-2{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+  .info-card{border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); padding:26px;}
+  .info-card h4{font-family:var(--mono); font-size:12px; color:var(--text-faint); margin-bottom:16px; text-transform:lowercase;}
+  .info-card ul{list-style:none;}
+  .info-card li{
+    font-size:14.5px; color:var(--text-muted); padding:9px 0; border-bottom:1px solid var(--border-soft);
+    display:flex; justify-content:space-between; gap:12px;
+  }
+  .info-card li:last-child{border-bottom:none;}
+  .info-card li strong{color:var(--text); font-weight:500;}
+  .info-card li span.dim{color:var(--text-faint); font-family:var(--mono); font-size:12px; white-space:nowrap;}
+
+  .achievements{margin-top:22px;}
+  .achievements li{
+    font-size:14.5px; color:var(--text-muted); padding:10px 0 10px 22px; position:relative;
+    border-bottom:1px solid var(--border-soft);
+  }
+  .achievements li:last-child{border-bottom:none;}
+  .achievements li::before{content:'▸'; position:absolute; left:0; color:var(--accent);}
+
+  /* ---------- CONTACT ---------- */
+  .contact-panel{
+    border:1px solid var(--border); border-radius:var(--radius);
+    background:linear-gradient(160deg, var(--surface), var(--surface-2));
+    padding:48px; display:grid; grid-template-columns:1.1fr 1fr; gap:44px;
+  }
+  .contact-panel h2{font-family:var(--mono); font-size:26px; margin-bottom:14px; color:var(--text);}
+  .contact-panel p{color:var(--text-muted); font-size:15px; margin-bottom:26px; max-width:400px;}
+  .contact-links{display:flex; flex-direction:column; gap:14px;}
+  .contact-link{
+    display:flex; align-items:center; gap:12px; font-size:14.5px; color:var(--text);
+    padding:10px 0; border-bottom:1px solid var(--border-soft); transition:color .2s, padding-left .2s;
+  }
+  .contact-link:hover{color:var(--accent); padding-left:6px;}
+  .contact-link .ico{
+    width:32px; height:32px; border-radius:7px; background:var(--surface-2); border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  form{display:flex; flex-direction:column; gap:14px;}
+  .field label{
+    font-family:var(--mono); font-size:11.5px; color:var(--text-faint); display:block; margin-bottom:6px;
+  }
+  .field input, .field textarea{
+    width:100%; background:var(--bg); border:1px solid var(--border); border-radius:6px;
+    padding:11px 13px; color:var(--text); font-family:var(--sans); font-size:14px;
+    transition:border-color .2s;
+  }
+  .field textarea{resize:vertical; min-height:90px;}
+  .field input:focus, .field textarea:focus{border-color:var(--accent); outline:none;}
+  form .btn-primary{margin-top:6px; justify-content:center;}
+  .form-status{
+    font-family:var(--mono); font-size:12.5px; margin-top:2px; min-height:16px;
+    color:var(--text-muted);
+  }
+  .form-status.ok{color:var(--teal);}
+  .form-status.err{color:var(--rose);}
+  .btn-primary:disabled{opacity:0.6; cursor:not-allowed; transform:none !important;}
+
+  footer{
+    border-top:1px solid var(--border-soft); padding:32px 0; margin-top:20px;
+  }
+  .footer-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;}
+  .footer-row span{font-family:var(--mono); font-size:12px; color:var(--text-faint);}
+
+  .reveal{opacity:0; transform:translateY(18px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width: 860px){
+    nav ul{display:none;}
+    .about-grid, .split-2, .skills-grid, .projects-grid{grid-template-columns:1fr;}
+    .metrics{grid-template-columns:repeat(2, 1fr);}
+    .contact-panel{grid-template-columns:1fr; padding:30px;}
+    .entry{grid-template-columns:1fr; gap:10px;}
+    .daterange{margin-bottom:4px;}
+  }
+  @media (max-width: 480px){
+    .hero{padding-top:120px;}
+    .status-panel{padding:18px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="navbar">
+    <div class="brand">ambuj-tiwari<span>/portfolio</span></div>
+    <nav>
+      <ul>
+        <li><a href="#about" class="navlink">about</a></li>
+        <li><a href="#experience" class="navlink">experience</a></li>
+        <li><a href="#skills" class="navlink">skills</a></li>
+        <li><a href="#projects" class="navlink">projects</a></li>
+        <li><a href="#contact" class="navlink">contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <a class="btn-nav" href="Ambuj_Tiwari_Resume.pdf" download>resume ↓</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="status-panel">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="line"><span class="prompt">$</span> whoami</div>
+      <div class="line" id="typedline">&nbsp;</div>
+      <div class="line">&gt; based in Kolkata, IN · serving notice period</div>
+    </div>
+
+    <h1>AMBUJ <em>TIWARI</em></h1>
+    <div class="role">Backend &amp; Full-Stack Engineer</div>
+    <div class="stack">Java · Spring Boot · Angular · AWS · GenAI / RAG</div>
+
+    <div class="hero-cta">
+      <a href="Ambuj_Tiwari_Resume.pdf" download class="btn btn-primary">↓ Download résumé</a>
+      <a href="#contact" class="btn btn-secondary">Get in touch →</a>
+    </div>
+
+    <div class="metrics reveal">
+      <div class="metric"><span class="num">3.9</span><span class="label">years experience</span></div>
+      <div class="metric"><span class="num">18+</span><span class="label">AWS Lambdas shipped</span></div>
+      <div class="metric"><span class="num">60%</span><span class="label">manual effort cut</span></div>
+      <div class="metric"><span class="num">90%+</span><span class="label">test coverage delivered</span></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="eyebrow">about</div>
+    <h2 class="section-title">Ships backend systems that don't page anyone at 2am.</h2>
+    <div class="about-grid">
+      <div class="reveal">
+        <p><strong>3.9 years</strong> into a backend and full-stack career built almost entirely inside one company — Cognizant — going from intern to Associate through four internal titles, each one adding a heavier system to my plate.</p>
+        <p>Day to day, that means <strong>Spring Boot microservices</strong>, <strong>REST &amp; SOAP APIs</strong>, reactive service calls with <strong>WebClient</strong> and <strong>CompletableFuture</strong>, and serverless workflows on <strong>AWS Lambda, API Gateway and DynamoDB</strong>. On the frontend side, <strong>Angular</strong> and TypeScript across insurance workflow screens.</p>
+        <p>Lately, most of the interesting problems have been GenAI-shaped — building <strong>RAG pipelines</strong>, wiring <strong>Anthropic Claude</strong> into internal tools, and using embeddings and semantic search to cut down manual engineering work at scale.</p>
+        <p>I'm currently serving my notice period and looking for the next system worth building.</p>
+      </div>
+      <div class="about-card reveal">
+        <div class="photo-frame">
+          <img src="profile.jpg" alt="Ambuj Tiwari">
+          <span class="photo-caption">profile.jpg</span>
+        </div>
+        <div class="row"><span>role</span><span>Associate — Backend Developer</span></div>
+        <div class="row"><span>company</span><span>Cognizant</span></div>
+        <div class="row"><span>location</span><span>Kolkata, WB, India</span></div>
+        <div class="row"><span>status</span><span>Serving notice period</span></div>
+        <div class="row"><span>education</span><span>B.Tech ECE — 8.7 CGPA</span></div>
+        <div class="row"><span>focus</span><span>Java · Spring Boot · AWS · GenAI</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EXPERIENCE / CHANGELOG -->
+  <section id="experience">
+    <div class="eyebrow">experience</div>
+    <h2 class="section-title">CHANGELOG.md — four years at Cognizant, one commit history</h2>
+
+    <div class="changelog-head reveal">
+      <span>cognizant/career-log</span>
+      <span>branch: main</span>
+    </div>
+    <div class="changelog reveal">
+
+      <div class="entry">
+        <div class="meta">
+          <span class="version">v4.0</span>
+          <span class="daterange">Aug 2024 —<br>Present</span>
+        </div>
+        <div>
+          <h3>Associate — Backend Developer</h3>
+          <div class="org">Cognizant · Kolkata / Remote</div>
+          <ul class="changes">
+            <li><span class="tag tag-fixed">Fixed</span> Enhanced and maintained Spring Boot microservices, cutting production issues by 15%.</li>
+            <li><span class="tag tag-added">Added</span> APIs built Design-First, integrating SOAP/WSDL services for enterprise-system communication.</li>
+            <li><span class="tag tag-improved">Improved</span> Service interactions using CompletableFuture and Spring WebFlux WebClient with OpenAPI-generated clients — reactive, type-safe, less manual glue code.</li>
+            <li><span class="tag tag-added">Added</span> AWS serverless workflows (Lambda, API Gateway, DynamoDB), reducing manual effort by 25%.</li>
+            <li><span class="tag tag-improved">Improved</span> System reliability through targeted performance tuning and debugging.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <span class="version">v3.0</span>
+          <span class="daterange">Mar 2024 —<br>Nov 2024</span>
+        </div>
+        <div>
+          <h3>Programmer Analyst — Full Stack Developer</h3>
+          <div class="org">Cognizant · Kolkata / Remote</div>
+          <ul class="changes">
+            <li><span class="tag tag-added">Added</span> Backend services in Java and Spring Boot for insurance workflows.</li>
+            <li><span class="tag tag-added">Added</span> Angular modules integrated with backend REST APIs across 5+ screens.</li>
+            <li><span class="tag tag-improved">Improved</span> SQL query performance, cutting response time by 20%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <span class="version">v2.0</span>
+          <span class="daterange">Aug 2022 —<br>Mar 2024</span>
+        </div>
+        <div>
+          <h3>Programmer Analyst Trainee — Frontend Developer</h3>
+          <div class="org">Cognizant · Kolkata / Remote</div>
+          <ul class="changes">
+            <li><span class="tag tag-added">Added</span> Responsive UI components built with Angular and TypeScript.</li>
+            <li><span class="tag tag-fixed">Fixed</span> UI/UX inconsistencies, reducing defects by 20%.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="meta">
+          <span class="version">v1.0</span>
+          <span class="daterange">Mar 2022 —<br>Aug 2022</span>
+        </div>
+        <div>
+          <h3>Full Stack Engineering Intern</h3>
+          <div class="org">Cognizant · Kolkata / Remote</div>
+          <ul class="changes">
+            <li><span class="tag tag-added">Added</span> Foundations in Java, Spring Boot, Maven and SQL through structured training modules.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="eyebrow">skills</div>
+    <h2 class="section-title">Toolbox</h2>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h4>languages</h4>
+        <div class="chips">
+          <span class="chip">Java 8/11/17/21</span><span class="chip">Python</span>
+          <span class="chip">TypeScript</span><span class="chip">JavaScript</span>
+          <span class="chip">SQL</span><span class="chip">C</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>backend &amp; apis</h4>
+        <div class="chips">
+          <span class="chip">Spring Boot</span><span class="chip">Spring MVC</span>
+          <span class="chip">Spring Security</span><span class="chip">Spring Data JPA</span>
+          <span class="chip">Spring WebFlux</span><span class="chip">Hibernate</span>
+          <span class="chip">Microservices</span><span class="chip">REST</span>
+          <span class="chip">SOAP/WSDL</span><span class="chip">OpenAPI/Swagger</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>frontend</h4>
+        <div class="chips">
+          <span class="chip">Angular 12+</span><span class="chip">RxJS</span>
+          <span class="chip">Angular Material</span><span class="chip">HTML5</span>
+          <span class="chip">SCSS/CSS3</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>cloud &amp; devops</h4>
+        <div class="chips">
+          <span class="chip">AWS Lambda</span><span class="chip">API Gateway</span>
+          <span class="chip">EC2</span><span class="chip">S3</span>
+          <span class="chip">SQS</span><span class="chip">Step Functions</span>
+          <span class="chip">Bedrock</span><span class="chip">Docker</span>
+          <span class="chip">Jenkins / CI-CD</span><span class="chip">SonarQube</span>
+          <span class="chip">Dynatrace</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>data &amp; testing</h4>
+        <div class="chips">
+          <span class="chip">MySQL</span><span class="chip">DynamoDB</span>
+          <span class="chip">FAISS</span><span class="chip">JUnit</span>
+          <span class="chip">Mockito</span><span class="chip">TDD</span>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <h4>genai</h4>
+        <div class="chips">
+          <span class="chip">LLMs</span><span class="chip">RAG</span>
+          <span class="chip">LangChain</span><span class="chip">Anthropic Claude</span>
+          <span class="chip">Tree-sitter</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="eyebrow">projects</div>
+    <h2 class="section-title">Selected builds</h2>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="pname">KT-Buddy — AI Knowledge Transfer Assistant</div>
+        <p>Turns large codebases into interactive, explainable knowledge systems. Anthropic Claude generates Javadoc summaries and inline explanations; a RAG pipeline answers natural-language questions grounded in the actual source, parsed via Tree-sitter.</p>
+        <div class="chips"><span class="chip">Claude</span><span class="chip">RAG</span><span class="chip">Tree-sitter</span><span class="chip">Streamlit</span><span class="chip">Python</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pname">Nexus — P2C Migration</div>
+        <p>Modernized legacy services into Spring Boot microservices with standardized API design. Reactive service-to-service calls via WebClient and OpenAPI-generated clients; concurrent workflows with CompletableFuture; Dynatrace tracing and SonarQube-gated CI/CD.</p>
+        <div class="chips"><span class="chip">Spring Boot</span><span class="chip">WebClient</span><span class="chip">Dynatrace</span><span class="chip">CI/CD</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pname">GenAI Visionaries</div>
+        <p>A serverless pipeline stitched from 18+ AWS Lambdas, cutting manual effort by 60%. FAISS-based semantic search layered with LLMs to speed up day-to-day developer workflows.</p>
+        <div class="chips"><span class="chip">AWS Lambda</span><span class="chip">FAISS</span><span class="chip">LLMs</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pname">Engineering Excellence</div>
+        <p>Led the migration of core microservices to Java 21 for better runtime performance, trimmed external dependencies, and pushed test coverage past 90%.</p>
+        <div class="chips"><span class="chip">Java 21</span><span class="chip">JUnit</span><span class="chip">Performance</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pname">G-Synergy</div>
+        <p>Extended Spring Boot microservices and REST APIs for insurance-workflow integrations, with a 20% database performance improvement along the way.</p>
+        <div class="chips"><span class="chip">Spring Boot</span><span class="chip">REST</span><span class="chip">SQL Tuning</span></div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="pname">MNX Rationalization</div>
+        <p>Built responsive Angular/TypeScript UI components across 5+ screens and resolved cross-browser issues that were quietly hurting the user experience.</p>
+        <div class="chips"><span class="chip">Angular</span><span class="chip">TypeScript</span><span class="chip">Cross-browser</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- EDUCATION / CERTS / ACHIEVEMENTS -->
+  <section id="education">
+    <div class="eyebrow">education &amp; credentials</div>
+    <h2 class="section-title">Background</h2>
+    <div class="split-2">
+      <div class="info-card reveal">
+        <h4>education</h4>
+        <ul>
+          <li><strong>B.Tech, Electronics &amp; Communication</strong><span class="dim">2018–2022</span></li>
+        </ul>
+        <p style="color:var(--text-muted); font-size:13.5px; margin-top:10px;">RCC Institute of Information Technology · CGPA 8.7</p>
+      </div>
+      <div class="info-card reveal">
+        <h4>certifications</h4>
+        <ul>
+          <li>Claude Certified Architect — Foundations</li>
+          <li>Spring Professional Certification</li>
+          <li>MySQL and JDBC</li>
+          <li>LangChain for Beginners</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="info-card reveal achievements-wrap" style="margin-top:22px;">
+      <h4>achievements</h4>
+      <ul class="achievements">
+        <li>Trained 100+ Gen-C engineers on Java and Spring Boot, earning formal recognition from management.</li>
+        <li>Awarded manager Cheers Points for consistently delivering multiple user stories ahead of expectations.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="eyebrow">contact</div>
+    <div class="contact-panel reveal">
+      <div>
+        <h2>Let's talk about the role.</h2>
+        <p>Serving my notice period and open to backend / full-stack opportunities. Reach out directly, or drop a note below and it'll land straight in my inbox.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:ambujrock38@gmail.com">
+            <span class="ico">✉</span> ambujrock38@gmail.com
+          </a>
+          <a class="contact-link" href="tel:+918777561830">
+            <span class="ico">☎</span> +91 87775 61830
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/ambuj-tiwari-4b3077213/" target="_blank" rel="noopener">
+            <span class="ico">in</span> linkedin.com/in/ambuj-tiwari
+          </a>
+          <a class="contact-link" href="#" style="cursor:default;">
+            <span class="ico">📍</span> Kolkata, West Bengal, India
+          </a>
+        </div>
+      </div>
+      <form id="contact-form">
+        <div class="field">
+          <label for="name">name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="email">email</label>
+          <input id="email" name="email" type="email" placeholder="you@company.com" required>
+        </div>
+        <div class="field">
+          <label for="message">message</label>
+          <textarea id="message" name="message" placeholder="Tell me about the role..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="contact-submit">Send message →</button>
+        <p id="contact-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="wrap">
+  <div class="footer-row">
+    <span>© 2026 Ambuj Tiwari — built with intent, not a template.</span>
+    <span>Kolkata, India</span>
+  </div>
+</footer>
+
+<script>
+  // Nav active state on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navlinks = document.querySelectorAll('.navlink');
+  const setActive = () => {
+    let current = '';
+    sections.forEach(sec => {
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 120 && rect.bottom > 120) current = sec.id;
+    });
+    navlinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  };
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Contact form -> Formspree (silent AJAX submit)
+  // 1. Sign up free at https://formspree.io, create a form, copy your endpoint
+  //    (looks like https://formspree.io/f/xxxxxxxx)
+  // 2. Paste it below in place of YOUR_FORMSPREE_ID
+  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mykqbzvo';
+
+  const contactForm = document.getElementById('contact-form');
+  const statusEl = document.getElementById('contact-status');
+  const submitBtn = document.getElementById('contact-submit');
+
+  contactForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (FORMSPREE_ENDPOINT.includes('YOUR_FORMSPREE_ID')) {
+      statusEl.textContent = 'Form not connected yet — add your Formspree endpoint in the code.';
+      statusEl.className = 'form-status err';
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending…';
+    statusEl.textContent = '';
+    statusEl.className = 'form-status';
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contactForm)
+      });
+
+      if (res.ok) {
+        statusEl.textContent = '✓ Message sent — thanks, I\'ll get back to you soon.';
+        statusEl.className = 'form-status ok';
+        contactForm.reset();
+      } else {
+        statusEl.textContent = 'Something went wrong — try emailing me directly instead.';
+        statusEl.className = 'form-status err';
+      }
+    } catch (err) {
+      statusEl.textContent = 'Network error — try emailing me directly instead.';
+      statusEl.className = 'form-status err';
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Send message →';
+    }
+  });
+
+  const typedEl = document.getElementById('typedline');
+  const fullText = '> ambuj tiwari — backend & full-stack engineer, 3.9 yrs';
+  let i = 0;
+  function type() {
+    if (i <= fullText.length) {
+      typedEl.innerHTML = fullText.slice(0, i) + '<span class="caret"></span>';
+      i++;
+      setTimeout(type, 28);
+    } else {
+      typedEl.innerHTML = fullText + '<span class="caret"></span>';
+    }
+  }
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    typedEl.textContent = fullText;
+  } else {
+    setTimeout(type, 500);
+  }
+</script>
+
+</body>
+</html>
